@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  redis_session:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data/
+
+  surrealdb_database:
+    image: surrealdb/surrealdb:latest
+    container_name: surreal_database
+    ports:
+      - "8000:8000"
+    command: ["start", "--log", "trace", "--user", "root", "--pass", "root", "memory"]
+    restart: always
+
+    
+
+
+
